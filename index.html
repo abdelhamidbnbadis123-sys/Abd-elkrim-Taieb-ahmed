@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>طيب أحمد عبد الكريم | Taieb ahmed abd elkrim - Cyber & AI Developer</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            cyber: {
+              black: '#0a0d14',
+              card: '#121722',
+              cyan: '#00f3ff',
+              magenta: '#ff0055',
+              green: '#00ff66',
+              purple: '#9d00ff'
+            }
+          },
+          fontFamily: {
+            sans: ['Tajawal', 'sans-serif'],
+            mono: ['Fira Code', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    body {
+      background-color: #05070a;
+      color: #e2e8f0;
+      font-family: 'Tajawal', sans-serif;
+      overflow-x: hidden;
+    }
+    
+    /* Cyber Grid Effect */
+    .cyber-bg {
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(0, 243, 255, 0.12) 0%, transparent 60%),
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 100% 100%, 40px 40px, 40px 40px;
+    }
+    
+    /* Neon Glows */
+    .glow-cyan {
+      box-shadow: 0 0 20px rgba(0, 243, 255, 0.25);
+    }
+    .glow-cyan-hover:hover {
+      box-shadow: 0 0 25px rgba(0, 243, 255, 0.45);
+      border-color: #00f3ff;
+    }
+    .text-glow-cyan {
+      text-shadow: 0 0 10px rgba(0, 243, 255, 0.6);
+    }
+    .text-glow-magenta {
+      text-shadow: 0 0 10px rgba(255, 0, 85, 0.6);
+    }
+    
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0a0d14;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00f3ff;
+    }
+    
+    /* Custom Toast Animation */
+    @keyframes toastIn {
+      from { transform: translateY(100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .animate-toast {
+      animation: toastIn 0.3s ease-out forwards;
+    }
+  </style>
+</head>
+<body class="cyber-bg min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-black">
+
+  <!-- ================= HEADER / NAVBAR ================= -->
+  <header class="sticky top-0 z-40 bg-[#0a0d14]/90 backdrop-blur-md border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <div class="flex items-center space-x-3 space-x-reverse">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-cyan-500 to-purple-600 p-[2px] flex items-center justify-center glow-cyan">
+          <div class="w-full h-full bg-[#0a0d14] rounded-[6px] flex items-center justify-center">
+            <i class="fa-solid font-mono text-cyan-400 font-bold text-lg">&lt;/&gt;</i>
+          </div>
+        </div>
+        <div>
+          <h1 class="text-lg font-extrabold text-white tracking-wide">طيب أحمد عبد الكريم</h1>
+          <p class="text-xs font-mono text-cyan-400">Taieb ahmed abd elkrim</p>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center space-x-6 space-x-reverse font-medium text-sm text-slate-300">
+        <a href="#hero" class="hover:text-cyan-400 transition-colors">الرئيسية</a>
+        <a href="#social" class="hover:text-cyan-400 transition-colors">تواصل معي</a>
+        <a href="#gallery" class="hover:text-cyan-400 transition-colors">معرض الصور</a>
+        <a href="#ai-studio" class="hover:text-cyan-400 transition-colors">استوديو جيميناي AI</a>
+        <a href="#skills" class="hover:text-cyan-400 transition-colors">الخبرات</a>
+      </nav>
+
+      <!-- Admin Button -->
+      <button onclick="openAdminModal()" class="px-4 py-2 text-xs font-mono rounded-lg bg-slate-900 text-cyan-400 border border-cyan-500/30 hover:border-cyan-400 hover:bg-cyan-500/10 transition-all flex items-center space-x-2 space-x-reverse">
+        <i class="fa-solid fa-lock text-cyan-400"></i>
+        <span>لوحة الأدمن</span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16">
+
+    <!-- ================= HERO SECTION ================= -->
+    <section id="hero" class="relative rounded-2xl bg-gradient-to-b from-[#121722] to-[#0a0d14] border border-slate-800/80 p-6 sm:p-12 overflow-hidden shadow-2xl">
+      <div class="absolute -top-24 -left-24 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-24 -right-24 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-10 relative z-10">
+        
+        <!-- Bio & Title -->
+        <div class="flex-1 text-center lg:text-right space-y-5">
+          <div class="inline-flex items-center space-x-2 space-x-reverse px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono">
+            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+            <span>مطور ويب • ذكاء اصطناعي • أمن سيبراني</span>
+          </div>
+          
+          <h1 class="text-3xl sm:text-5xl font-black text-white leading-tight">
+            مرحباً بك، أنا <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-purple-400 text-glow-cyan">طيب أحمد عبد الكريم</span>
+          </h1>
+          <p class="text-sm sm:text-base font-mono text-purple-300/80">Taieb ahmed abd elkrim</p>
+          
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl">
+            متخصص في بناء المنظومات البرمجية الحديثة، دمج نماذج الذكاء الاصطناعي المتقدمة (Gemini AI)، واختبار اختراق وحماية الأنظمة السيبرانية. أعمل على تقديم حلول تقنية سريعة، آمنة، وذكية.
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+            <a href="#social" class="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-bold text-sm hover:opacity-90 transition-all glow-cyan flex items-center space-x-2 space-x-reverse">
+              <i class="fa-solid fa-paper-plane"></i>
+              <span>تواصل معي فوراً</span>
+            </a>
+            <a href="#ai-studio" class="px-6 py-3 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 font-bold text-sm hover:bg-slate-800 transition-all flex items-center space-x-2 space-x-reverse">
+              <i class="fa-solid fa-wand-magic-sparkles text-purple-400"></i>
+              <span>تجربة أدوات AI</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Dynamic Profile Avatar (Loaded from Firebase) -->
+        <div class="relative group">
+          <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-3xl blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
+          
+          <div class="relative w-64 h-64 sm:w-72 sm:h-72 rounded-2xl bg-[#0a0d14] border-2 border-cyan-500/50 overflow-hidden flex items-center justify-center p-2 shadow-2xl">
+            <!-- Dynamic Image Container -->
+            <div id="publicProfileContainer" class="w-full h-full rounded-xl overflow-hidden bg-slate-900/80 flex flex-col items-center justify-center text-center p-4">
+              <i class="fa-solid fa-user-astronaut text-6xl text-cyan-400/60 mb-3 animate-bounce"></i>
+              <span class="text-xs text-slate-400 font-mono">جاري تحميل صورة الملف...</span>
+            </div>
+          </div>
+          
+          <!-- Cyber Badge -->
+          <div class="absolute -bottom-3 -right-3 bg-[#0a0d14] border border-cyan-500 px-3 py-1 rounded-lg text-[10px] font-mono text-cyan-400 shadow-md">
+            VERIFIED ADMIN PROFILE
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= SOCIAL & CONTACT LINKS ================= -->
+    <section id="social" class="space-y-6">
+      <div class="text-center sm:text-right">
+        <h2 class="text-2xl font-extrabold text-white flex items-center justify-center sm:justify-start space-x-2 space-x-reverse">
+          <i class="fa-solid fa-share-nodes text-cyan-400"></i>
+          <span>منصات التواصل المباشر</span>
+        </h2>
+        <p class="text-xs text-slate-400 mt-1">تواصل معي بسهولة عبر حساباتي الرسمية أو انسخ الروابط بنقرة واحدة</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        
+        <!-- Facebook -->
+        <div class="p-5 rounded-xl bg-[#121722] border border-slate-800 hover:border-blue-500/50 transition-all glow-cyan-hover flex flex-col justify-between space-y-4">
+          <div class="flex items-center space-x-4 space-x-reverse">
+            <div class="w-12 h-12 rounded-xl bg-blue-600/20 text-blue-500 flex items-center justify-center text-2xl">
+              <i class="fa-brands fa-facebook-f"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-white text-base">Facebook</h3>
+              <p class="text-xs text-slate-400 font-mono">@bdalkrymtybahmd</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-800">
+            <a href="https://www.facebook.com/bdalkrymtybahmd" target="_blank" onclick="trackClick('Facebook')" class="px-3 py-2 rounded-lg bg-blue-600/20 hover:bg-blue-600 text-blue-400 hover:text-white font-semibold text-xs transition-all text-center flex items-center justify-center space-x-1 space-x-reverse">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              <span>زيارة الحساب</span>
+            </a>
+            <button onclick="copyText('https://www.facebook.com/bdalkrymtybahmd', 'رابط فيسبوك')" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs transition-all flex items-center justify-center space-x-1 space-x-reverse">
+              <i class="fa-regular fa-copy"></i>
+              <span>نسخ الرابط</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Instagram -->
+        <div class="p-5 rounded-xl bg-[#121722] border border-slate-800 hover:border-pink-500/50 transition-all glow-cyan-hover flex flex-col justify-between space-y-4">
+          <div class="flex items-center space-x-4 space-x-reverse">
+            <div class="w-12 h-12 rounded-xl bg-pink-600/20 text-pink-500 flex items-center justify-center text-2xl">
+              <i class="fa-brands fa-instagram"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-white text-base">Instagram</h3>
+              <p class="text-xs text-slate-400 font-mono">@bdalkrymtyb</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-800">
+            <a href="https://instagram.com/bdalkrymtyb?mdxt=MjQwbGdiejQxYzRl" target="_blank" onclick="trackClick('Instagram')" class="px-3 py-2 rounded-lg bg-pink-600/20 hover:bg-pink-600 text-pink-400 hover:text-white font-semibold text-xs transition-all text-center flex items-center justify-center space-x-1 space-x-reverse">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              <span>زيارة الحساب</span>
+            </a>
+            <button onclick="copyText('https://instagram.com/bdalkrymtyb?mdxt=MjQwbGdiejQxYzRl', 'رابط إنستغرام')" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs transition-all flex items-center justify-center space-x-1 space-x-reverse">
+              <i class="fa-regular fa-copy"></i>
+              <span>نسخ الرابط</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- TikTok -->
+        <div class="p-5 rounded-xl bg-[#121722] border border-slate-800 hover:border-cyan-400/50 transition-all glow-cyan-hover flex flex-col justify-between space-y-4">
+          <div class="flex items-center space-x-4 space-x-reverse">
+            <div class="w-12 h-12 rounded-xl bg-cyan-400/20 text-cyan-400 flex items-center justify-center text-2xl">
+              <i class="fa-brands fa-tiktok"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-white text-base">TikTok</h3>
+              <p class="text-xs text-slate-400 font-mono">@karim.ahmed895</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-800">
+            <a href="https://tiktok.com/@karim.ahmed895" target="_blank" onclick="trackClick('TikTok')" class="px-3 py-2 rounded-lg bg-cyan-400/20 hover:bg-cyan-400 text-cyan-400 hover:text-black font-semibold text-xs transition-all text-center flex items-center justify-center space-x-1 space-x-reverse">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              <span>زيارة الحساب</span>
+            </a>
+            <button onclick="copyText('https://tiktok.com/@karim.ahmed895', 'حساب تيك توك')" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs transition-all flex items-center justify-center space-x-1 space-x-reverse">
+              <i class="fa-regular fa-copy"></i>
+              <span>نسخ الرابط</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- WhatsApp -->
+        <div class="p-5 rounded-xl bg-[#121722] border border-slate-800 hover:border-green-500/50 transition-all glow-cyan-hover flex flex-col justify-between space-y-4">
+          <div class="flex items-center space-x-4 space-x-reverse">
+            <div class="w-12 h-12 rounded-xl bg-green-500/20 text-green-400 flex items-center justify-center text-2xl">
+              <i class="fa-brands fa-whatsapp"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-white text-base">WhatsApp</h3>
+              <p class="text-xs text-slate-400 font-mono">0670800009</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-800">
+            <a href="https://wa.me/213670800009" target="_blank" onclick="trackClick('WhatsApp')" class="px-3 py-2 rounded-lg bg-green-500/20 hover:bg-green-500 text-green-400 hover:text-black font-semibold text-xs transition-all text-center flex items-center justify-center space-x-1 space-x-reverse">
+              <i class="fa-solid fa-comments"></i>
+              <span>مراسلة واتساب</span>
+            </a>
+            <button onclick="copyText('0670800009', 'رقم الواتساب')" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs transition-all flex items-center justify-center space-x-1 space-x-reverse">
+              <i class="fa-regular fa-copy"></i>
+              <span>نسخ الرقم</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Phone Call -->
+        <div class="p-5 rounded-xl bg-[#121722] border border-slate-800 hover:border-yellow-500/50 transition-all glow-cyan-hover flex flex-col justify-between space-y-4">
+          <div class="flex items-center space-x-4 space-x-reverse">
+            <div class="w-12 h-12 rounded-xl bg-yellow-500/20 text-yellow-400 flex items-center justify-center text-2xl">
+              <i class="fa-solid fa-phone"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-white text-base">اتصال هاتفي مباشر</h3>
+              <p class="text-xs text-slate-400 font-mono">0670800009</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-800">
+            <a href="tel:0670800009" onclick="trackClick('Phone')" class="px-3 py-2 rounded-lg bg-yellow-500/20 hover:bg-yellow-500 text-yellow-400 hover:text-black font-semibold text-xs transition-all text-center flex items-center justify-center space-x-1 space-x-reverse">
+              <i class="fa-solid fa-phone-flip"></i>
+              <span>الاتصال الآن</span>
+            </a>
+            <button onclick="copyText('0670800009', 'رقم الهاتف')" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs transition-all flex items-center justify-center space-x-1 space-x-reverse">
+              <i class="fa-regular fa-copy"></i>
+              <span>نسخ الرقم</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= HIGH-TECH PUBLIC GALLERY ================= -->
+    <section id="gallery" class="space-y-6">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div>
+          <h2 class="text-2xl font-extrabold text-white flex items-center space-x-2 space-x-reverse">
+            <i class="fa-solid fa-microchip text-purple-400"></i>
+            <span>معرض الصور التقنية والبرمجية</span>
+          </h2>
+          <p class="text-xs text-slate-400 mt-1">عالم الاختراق الأخلاقي، تطوير البرمجيات، وحواسيب الذكاء الاصطناعي</p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="flex flex-wrap gap-2 bg-[#121722] p-1.5 rounded-xl border border-slate-800 text-xs font-medium">
+          <button onclick="filterGallery('all')" class="gallery-filter-btn px-4 py-2 rounded-lg bg-cyan-500 text-black font-bold transition-all" data-filter="all">الكل</button>
+          <button onclick="filterGallery('cyber')" class="gallery-filter-btn px-4 py-2 rounded-lg text-slate-400 hover:text-white transition-all" data-filter="cyber">الأمن السيبراني والاختراق</button>
+          <button onclick="filterGallery('dev')" class="gallery-filter-btn px-4 py-2 rounded-lg text-slate-400 hover:text-white transition-all" data-filter="dev">تطوير البرمجيات</button>
+          <button onclick="filterGallery('ai')" class="gallery-filter-btn px-4 py-2 rounded-lg text-slate-400 hover:text-white transition-all" data-filter="ai">الذكاء الاصطناعي والحواسيب</button>
+        </div>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="galleryGrid">
+        
+        <!-- Item 1: Cyber -->
+        <div class="gallery-item cyber group relative rounded-xl overflow-hidden bg-slate-900 border border-slate-800 hover:border-cyan-500/50 transition-all">
+          <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80" alt="Cybersecurity Matrix" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-4 flex flex-col justify-end">
+            <span class="text-[10px] font-mono text-cyan-400 uppercase tracking-widest">الأمن السيبراني</span>
+            <h3 class="text-base font-bold text-white">اختبار الاختراق والتحليل السيبراني</h3>
+          </div>
+        </div>
+
+        <!-- Item 2: Dev -->
+        <div class="gallery-item dev group relative rounded-xl overflow-hidden bg-slate-900 border border-slate-800 hover:border-cyan-500/50 transition-all">
+          <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" alt="Code IDE" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-4 flex flex-col justify-end">
+            <span class="text-[10px] font-mono text-cyan-400 uppercase tracking-widest">تطوير البرمجيات</span>
+            <h3 class="text-base font-bold text-white">بناء الخوارزميات وأنظمة الويب</h3>
+          </div>
+        </div>
+
+        <!-- Item 3: AI -->
+        <div class="gallery-item ai group relative rounded-xl overflow-hidden bg-slate-900 border border-slate-800 hover:border-cyan-500/50 transition-all">
+          <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="AI Neural Workstation" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-4 flex flex-col justify-end">
+            <span class="text-[10px] font-mono text-cyan-400 uppercase tracking-widest">الذكاء الاصطناعي</span>
+            <h3 class="text-base font-bold text-white">شباكات العصب الاصطناعي والمعالجة</h3>
+          </div>
+        </div>
+
+        <!-- Item 4: Workstation -->
+        <div class="gallery-item ai dev group relative rounded-xl overflow-hidden bg-slate-900 border border-slate-800 hover:border-cyan-500/50 transition-all">
+          <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80" alt="Futuristic Setup" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-4 flex flex-col justify-end">
+            <span class="text-[10px] font-mono text-cyan-400 uppercase tracking-widest">محطات العمل</span>
+            <h3 class="text-base font-bold text-white">حواسيب التطوير المتقدمة</h3>
+          </div>
+        </div>
+
+        <!-- Item 5: Hacking Security -->
+        <div class="gallery-item cyber group relative rounded-xl overflow-hidden bg-slate-900 border border-slate-800 hover:border-cyan-500/50 transition-all">
+          <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80" alt="Cyber Shield" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-4 flex flex-col justify-end">
+            <span class="text-[10px] font-mono text-cyan-400 uppercase tracking-widest">الأمن السيبراني</span>
+            <h3 class="text-base font-bold text-white">جدران الحماية والتشفير المتقدم</h3>
+          </div>
+        </div>
+
+        <!-- Item 6: Web Code -->
+        <div class="gallery-item dev group relative rounded-xl overflow-hidden bg-slate-900 border border-slate-800 hover:border-cyan-500/50 transition-all">
+          <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=800&q=80" alt="HTML CSS JS Code" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-4 flex flex-col justify-end">
+            <span class="text-[10px] font-mono text-cyan-400 uppercase tracking-widest">تطوير الويب</span>
+            <h3 class="text-base font-bold text-white">تكوين وتطوير الواجهات والتطبيقات</h3>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= GEMINI AI CHAT & VISION STUDIO ================= -->
+    <section id="ai-studio" class="space-y-6">
+      <div class="text-center sm:text-right">
+        <div class="inline-flex items-center space-x-2 space-x-reverse px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-400 text-xs font-mono mb-2">
+          <i class="fa-solid fa-brain"></i>
+          <span>محرك Gemini API الأصلي 100%</span>
+        </div>
+        <h2 class="text-2xl font-extrabold text-white">جيميناي AI: المساعد الذكي واستوديو الصور</h2>
+        <p class="text-xs text-slate-400 mt-1">تحدث مع الذكاء الاصطناعي مباشرة، أو قم بتحميل وإلتقاط صورة من هاتفك لتعديلها وتحليلها بالكامل</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        
+        <!-- Tool 1: Gemini Live Chatbot -->
+        <div class="rounded-2xl bg-[#121722] border border-slate-800 p-5 flex flex-col h-[520px] shadow-xl">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+            <div class="flex items-center space-x-3 space-x-reverse">
+              <div class="w-9 h-9 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-lg">
+                <i class="fa-solid fa-robot"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-white text-sm">مساعد جيميناي (Gemini 2.5 Flash)</h3>
+                <p class="text-[10px] text-green-400 font-mono">● متصل وجاهز للرد</p>
+              </div>
+            </div>
+            <button onclick="clearChat()" class="text-xs text-slate-500 hover:text-slate-300"><i class="fa-solid fa-trash"></i> مسح</button>
+          </div>
+
+          <!-- Chat messages area -->
+          <div id="chatBox" class="flex-grow my-4 overflow-y-auto space-y-4 pr-1 text-sm">
+            <div class="flex items-start space-x-2 space-x-reverse">
+              <div class="w-7 h-7 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xs flex-shrink-0">
+                <i class="fa-solid fa-bot"></i>
+              </div>
+              <div class="bg-slate-800/80 p-3 rounded-2xl rounded-tr-none text-slate-200 leading-relaxed max-w-[85%]">
+                مرحباً بك! أنا مساعد الذكاء الاصطناعي الخاص بالمطور <strong>طيب أحمد عبد الكريم</strong>. كيف يمكنني مساعدتك في مجال البرمجة، الأفكار التقنية، أو الأمن السيبراني اليوم؟
+              </div>
+            </div>
+          </div>
+
+          <!-- Chat input -->
+          <form onsubmit="handleChatSubmit(event)" class="pt-2 border-t border-slate-800 flex items-center gap-2">
+            <input id="chatInput" type="text" placeholder="اكتب سؤالك هنا..." class="flex-grow bg-slate-900 border border-slate-700 focus:border-cyan-500 rounded-xl px-4 py-2.5 text-sm text-white outline-none">
+            <button type="submit" id="chatSendBtn" class="px-4 py-2.5 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-xl transition-all flex items-center justify-center">
+              <i class="fa-solid fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+
+        <!-- Tool 2: Gemini AI Vision & Image Studio -->
+        <div class="rounded-2xl bg-[#121722] border border-slate-800 p-5 flex flex-col justify-between shadow-xl space-y-4">
+          
+          <div class="flex items-center space-x-3 space-x-reverse pb-3 border-b border-slate-800">
+            <div class="w-9 h-9 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center text-lg">
+              <i class="fa-solid fa-camera-retro"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-white text-sm">استوديو تحليل وتعديل الصور (Gemini Vision)</h3>
+              <p class="text-[10px] text-slate-400">التقط صورة من الكاميرا أو رفعها للتعديل والتحليل بالذكاء الاصطناعي</p>
+            </div>
+          </div>
+
+          <!-- Image Preview Area -->
+          <div class="relative w-full h-48 bg-slate-900 rounded-xl border-2 border-dashed border-slate-700 flex flex-col items-center justify-center overflow-hidden group">
+            
+            <img id="visionImagePreview" class="hidden w-full h-full object-contain">
+            
+            <div id="visionPlaceholder" class="text-center p-4 space-y-2">
+              <i class="fa-solid fa-cloud-arrow-up text-3xl text-purple-400/60"></i>
+              <p class="text-xs text-slate-400">حمل صورة من هاتفك أو التقط صورة الآن</p>
+            </div>
+
+            <!-- Action File Buttons -->
+            <div class="absolute bottom-3 flex gap-2">
+              <label class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-xs font-medium cursor-pointer shadow-md flex items-center space-x-1.5 space-x-reverse">
+                <i class="fa-solid fa-file-image text-purple-400"></i>
+                <span>رفع صورة</span>
+                <input type="file" accept="image/*" onchange="handleVisionImageUpload(event)" class="hidden">
+              </label>
+
+              <label class="px-3 py-1.5 bg-purple-600/30 hover:bg-purple-600 text-white rounded-lg text-xs font-medium cursor-pointer shadow-md flex items-center space-x-1.5 space-x-reverse border border-purple-500/40">
+                <i class="fa-solid fa-camera text-purple-300"></i>
+                <span>التقاط بالكاميرا</span>
+                <input type="file" accept="image/*" capture="environment" onchange="handleVisionImageUpload(event)" class="hidden">
+              </label>
+            </div>
+          </div>
+
+          <!-- Analysis Prompt -->
+          <div class="space-y-2">
+            <label class="text-xs font-medium text-slate-300">أمر التعديل أو السؤال حول الصورة:</label>
+            <textarea id="visionPrompt" rows="2" placeholder="مثال: حلل الكود الموجود في الصورة، أو صف الصورة بالتفصيل مع توجيه نصائح..." class="w-full bg-slate-900 border border-slate-700 focus:border-purple-500 rounded-xl p-3 text-xs text-white outline-none resize-none"></textarea>
+          </div>
+
+          <!-- Vision Result Output -->
+          <div id="visionResult" class="hidden bg-slate-900/90 border border-purple-500/30 p-3 rounded-xl text-xs text-slate-200 max-h-36 overflow-y-auto leading-relaxed font-mono">
+          </div>
+
+          <!-- Submit Vision -->
+          <button id="processVisionBtn" onclick="processGeminiVision()" class="w-full py-3 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold rounded-xl text-sm transition-all shadow-lg flex items-center justify-center space-x-2 space-x-reverse">
+            <i class="fa-solid fa-microchip"></i>
+            <span>معالجة الصورة بوساطة Gemini AI</span>
+          </button>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="border-t border-slate-800/80 bg-[#07090e] py-8 text-center text-xs text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 space-y-2">
+      <p class="font-mono text-cyan-400/90">
+        جميع الحقوق محفوظة &copy; <span id="year">2026</span> - <strong class="text-white">طيب أحمد عبد الكريم (Taieb ahmed abd elkrim)</strong>
+      </p>
+      <p class="text-[11px] text-slate-500">تم التطوير باستخدام أحدث تقنيات الويب، الذكاء الاصطناعي والأمن السيبراني</p>
+    </div>
+  </footer>
+
+  <!-- ================= SECURE ADMIN MODAL ================= -->
+  <div id="adminModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="bg-[#121722] border border-cyan-500/40 rounded-2xl max-w-2xl w-full p-6 shadow-2xl space-y-6 relative max-h-[90vh] overflow-y-auto">
+      
+      <!-- Close Modal Button -->
+      <button onclick="closeAdminModal()" class="absolute top-4 left-4 text-slate-400 hover:text-white text-lg">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Step 1: Passcode Login Form -->
+      <div id="adminAuthSection" class="space-y-4 text-center py-4">
+        <div class="w-16 h-16 bg-cyan-500/10 text-cyan-400 rounded-full flex items-center justify-center mx-auto text-2xl border border-cyan-500/30">
+          <i class="fa-solid fa-user-shield"></i>
+        </div>
+        <h3 class="text-xl font-bold text-white">لوحة تحكم الأدمن الخاصة</h3>
+        <p class="text-xs text-slate-400">أدخل رمز المرور الخاص لإدارة الصورة الشخصية ومتابعة الإحصائيات</p>
+
+        <div class="max-w-xs mx-auto space-y-3">
+          <input id="adminPassInput" type="password" placeholder="رمز المرور (Passcode)" class="w-full bg-slate-900 border border-slate-700 focus:border-cyan-500 rounded-xl px-4 py-2.5 text-center text-white tracking-widest outline-none">
+          <button onclick="checkAdminAuth()" class="w-full py-2.5 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-xl text-sm transition-all">
+            دخول اللوحة
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2: Full Admin Dashboard (Protected) -->
+      <div id="adminDashboard" class="hidden space-y-6">
+        
+        <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+          <div class="flex items-center space-x-2 space-x-reverse">
+            <span class="w-3 h-3 rounded-full bg-green-500 animate-pulse"></span>
+            <h3 class="font-bold text-white text-lg">مرحباً بك، طيب أحمد عبد الكريم</h3>
+          </div>
+          <span class="text-xs font-mono text-cyan-400">Firebase Live DB Connected</span>
+        </div>
+
+        <!-- Tool: Change Public Profile Picture -->
+        <div class="bg-slate-900 p-4 rounded-xl border border-slate-800 space-y-3">
+          <h4 class="font-bold text-sm text-cyan-400 flex items-center space-x-2 space-x-reverse">
+            <i class="fa-solid fa-image"></i>
+            <span>تحديث الصورة الشخصية العامة (Profile Picture)</span>
+          </h4>
+          <p class="text-xs text-slate-400">اختر صورة جديدة من هاتفك أو التقاطها مباشرة لتظهر للجميع فوراً على الصفحة الرئيسية</p>
+
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <!-- Upload from phone/PC -->
+            <label class="px-4 py-2 bg-cyan-500 hover:bg-cyan-400 text-black font-bold rounded-xl text-xs cursor-pointer transition-all flex items-center space-x-2 space-x-reverse">
+              <i class="fa-solid fa-upload"></i>
+              <span>رفع صورة جديدة</span>
+              <input type="file" accept="image/*" onchange="uploadAdminProfileImage(event)" class="hidden">
+            </label>
+
+            <!-- Capture from Phone Camera -->
+            <label class="px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white font-bold rounded-xl text-xs cursor-pointer transition-all flex items-center space-x-2 space-x-reverse">
+              <i class="fa-solid fa-camera"></i>
+              <span>التقاط صورة بالكاميرا</span>
+              <input type="file" accept="image/*" capture="environment" onchange="uploadAdminProfileImage(event)" class="hidden">
+            </label>
+            
+            <button onclick="resetDefaultProfileImage()" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs transition-all">
+              إعادة التعين
+            </button>
+          </div>
+        </div>
+
+        <!-- Stat Cards -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 text-center">
+            <span class="text-[10px] text-slate-400">إجمالي الزيارات</span>
+            <p id="statTotalVisits" class="text-lg font-bold text-cyan-400 font-mono">0</p>
+          </div>
+          <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 text-center">
+            <span class="text-[10px] text-slate-400">نقرات فيسبوك</span>
+            <p id="statFacebookClicks" class="text-lg font-bold text-blue-400 font-mono">0</p>
+          </div>
+          <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 text-center">
+            <span class="text-[10px] text-slate-400">نقرات واتساب</span>
+            <p id="statWhatsappClicks" class="text-lg font-bold text-green-400 font-mono">0</p>
+          </div>
+          <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 text-center">
+            <span class="text-[10px] text-slate-400">نقرات إنستغرام</span>
+            <p id="statInstagramClicks" class="text-lg font-bold text-pink-400 font-mono">0</p>
+          </div>
+        </div>
+
+        <!-- Live Visitor IP Logs (100% Private to Admin) -->
+        <div class="space-y-2">
+          <h4 class="font-bold text-xs text-slate-300">سجل الزيارات المباشرة والأنشطة (خاص بالأدمن فقط):</h4>
+          <div id="adminVisitorLogs" class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 h-40 overflow-y-auto text-[11px] font-mono space-y-1.5 text-slate-300">
+            <div class="text-slate-500">جاري تحميل سجلات الزائرين...</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION UI -->
+  <div id="toast" class="fixed bottom-5 left-5 z-50 hidden bg-cyan-500 text-black px-4 py-2.5 rounded-xl font-bold text-xs shadow-2xl flex items-center space-x-2 space-x-reverse animate-toast">
+    <i class="fa-solid fa-circle-check text-sm"></i>
+    <span id="toastMessage">تم النسخ بنجاح!</span>
+  </div>
+
+  <!-- ================= JAVASCRIPT LOGIC ================= -->
+  <script>
+    // System Constants
+    const FIREBASE_DB_URL = "https://alger-gam-default-rtdb.firebaseio.com";
+    const GEMINI_API_KEY = ""; // Dynamic key handled by Canvas platform environment
+    const PASSCODE = "0670800009";
+
+    // Global App State
+    let selectedVisionBase64 = null;
+
+    // Window Init
+    window.onload = function() {
+      fetchPublicProfileImage();
+      registerVisitorLog();
+      fetchAdminStats();
+    };
+
+    // -------------------------------------------------------------
+    // 1. FIREBASE REALTIME DB - PROFILE IMAGE SYNC
+    // -------------------------------------------------------------
+    async function fetchPublicProfileImage() {
+      const container = document.getElementById('publicProfileContainer');
+      try {
+        const response = await fetch(`${FIREBASE_DB_URL}/profileImage.json`);
+        const data = await response.json();
+
+        if (data && data.imageUrl) {
+          container.innerHTML = `
+            <img src="${data.imageUrl}" alt="طيب أحمد عبد الكريم" class="w-full h-full object-cover rounded-xl transition-all duration-300 hover:scale-105">
+          `;
+        } else {
+          showDefaultProfilePlaceholder();
+        }
+      } catch (err) {
+        console.log("Firebase sync fallback:", err);
+        showDefaultProfilePlaceholder();
+      }
+    }
+
+    function showDefaultProfilePlaceholder() {
+      const container = document.getElementById('publicProfileContainer');
+      container.innerHTML = `
+        <div class="flex flex-col items-center justify-center h-full text-center p-3">
+          <i class="fa-solid fa-user-shield text-5xl text-cyan-400 mb-2"></i>
+          <span class="font-bold text-sm text-white">طيب أحمد عبد الكريم</span>
+          <span class="text-[10px] font-mono text-cyan-400/80">Taieb ahmed abd elkrim</span>
+          <span class="text-[9px] text-slate-500 mt-2">يمكن للأدمن رفع الصورة من اللوحة</span>
+        </div>
+      `;
+    }
+
+    async function uploadAdminProfileImage(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      showToast("جاري معالجة وتحميل الصورة...");
+
+      const reader = new FileReader();
+      reader.onload = async function(e) {
+        const base64Data = e.target.result;
+
+        try {
+          // Store profile image directly in Firebase Realtime DB
+          await fetch(`${FIREBASE_DB_URL}/profileImage.json`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              imageUrl: base64Data,
+              updatedAt: new Date().toISOString()
+            })
+          });
+
+          showToast("تم تحديث الصورة الشخصية للعامة بنجاح!");
+          fetchPublicProfileImage(); // Refresh local view
+        } catch (err) {
+          showToast("حدث خطأ أثناء الاتصال بالسيرفر!");
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+
+    async function resetDefaultProfileImage() {
+      try {
+        await fetch(`${FIREBASE_DB_URL}/profileImage.json`, { method: 'DELETE' });
+        showToast("تم إعادة تعيين الصورة الشخصية الافتراضية");
+        fetchPublicProfileImage();
+      } catch(e) {
+        showToast("فشل الحذف");
+      }
+    }
+
+    // -------------------------------------------------------------
+    // 2. PRIVACY & VISITOR LOGS TRACKING (ADMIN ONLY)
+    // -------------------------------------------------------------
+    async function registerVisitorLog() {
+      try {
+        // Increment visitor counter quietly
+        const countRes = await fetch(`${FIREBASE_DB_URL}/stats/totalVisits.json`);
+        let currentVisits = (await countRes.json()) || 0;
+        currentVisits++;
+        
+        await fetch(`${FIREBASE_DB_URL}/stats/totalVisits.json`, {
+          method: 'PUT',
+          body: JSON.stringify(currentVisits)
+        });
+
+        // Register IP & Device info securely to admin logs
+        const logData = {
+          time: new Date().toLocaleTimeString('ar-EG'),
+          date: new Date().toLocaleDateString('en-US'),
+          device: navigator.userAgent.includes("Mobile") ? "هاتف محمول" : "حاسوب محمول/مكتبي",
+          platform: navigator.platform
+        };
+
+        await fetch(`${FIREBASE_DB_URL}/visitorLogs.json`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(logData)
+        });
+      } catch (e) {
+        // Silently handle
+      }
+    }
+
+    async function trackClick(platform) {
+      try {
+        const path = `${FIREBASE_DB_URL}/stats/clicks/${platform}.json`;
+        const res = await fetch(path);
+        let count = (await res.json()) || 0;
+        count++;
+        await fetch(path, { method: 'PUT', body: JSON.stringify(count) });
+      } catch (e) {
+        // Silently handle
+      }
+    }
+
+    async function fetchAdminStats() {
+      try {
+        const statsRes = await fetch(`${FIREBASE_DB_URL}/stats.json`);
+        const stats = await statsRes.json();
+
+        if (stats) {
+          document.getElementById('statTotalVisits').innerText = stats.totalVisits || 0;
+          document.getElementById('statFacebookClicks').innerText = stats.clicks?.Facebook || 0;
+          document.getElementById('statWhatsappClicks').innerText = stats.clicks?.WhatsApp || 0;
+          document.getElementById('statInstagramClicks').innerText = stats.clicks?.Instagram || 0;
+        }
+
+        // Fetch logs
+        const logsRes = await fetch(`${FIREBASE_DB_URL}/visitorLogs.json`);
+        const logs = await logsRes.json();
+        const logsContainer = document.getElementById('adminVisitorLogs');
+
+        if (logs) {
+          logsContainer.innerHTML = '';
+          Object.values(logs).reverse().slice(0, 15).forEach(log => {
+            logsContainer.innerHTML += `
+              <div class="border-b border-slate-800 pb-1 flex justify-between">
+                <span>[${log.time}] زيارة من (${log.device})</span>
+                <span class="text-cyan-400">${log.date}</span>
+              </div>
+            `;
+          });
+        }
+      } catch (e) {
+        // Handled
+      }
+    }
+
+    // -------------------------------------------------------------
+    // 3. GEMINI AI CHATBOT (gemini-2.5-flash)
+    // -------------------------------------------------------------
+    async function handleChatSubmit(event) {
+      event.preventDefault();
+      const input = document.getElementById('chatInput');
+      const query = input.value.trim();
+      if (!query) return;
+
+      appendChatMessage("user", query);
+      input.value = '';
+
+      const typingId = appendChatMessage("bot", "جاري التفكير والتوليد عبر Gemini AI...");
+
+      try {
+        const systemPrompt = "أنت مساعد ذكي مخصص للمطور وخبير الأمن السيبراني والذكاء الاصطناعي 'طيب أحمد عبد الكريم' (Taieb ahmed abd elkrim). أجب بأسلوب محترف، دقيق، ومشجع باللغة العربية حول البرمجة، الأمن السيبراني والتقنية.";
+        
+        const payload = {
+          contents: [{ parts: [{ text: query }] }],
+          systemInstruction: { parts: [{ text: systemPrompt }] }
+        };
+
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await response.json();
+        const replyText = result.candidates?.[0]?.content?.parts?.[0]?.text || "اعتذر، لم أتمكن من المعالجة حالياً.";
+
+        updateChatMessage(typingId, replyText);
+
+      } catch (err) {
+        updateChatMessage(typingId, "حدث خطأ في الاتصال بمحرك Gemini AI. يرجى المحاولة لاحقاً.");
+      }
+    }
+
+    function appendChatMessage(role, text) {
+      const chatBox = document.getElementById('chatBox');
+      const msgId = 'msg-' + Date.now();
+      const isUser = role === "user";
+
+      const html = `
+        <div id="${msgId}" class="flex items-start space-x-2 space-x-reverse ${isUser ? 'flex-row-reverse space-x-reverse' : ''}">
+          <div class="w-7 h-7 rounded-full ${isUser ? 'bg-purple-600 text-white' : 'bg-cyan-500/20 text-cyan-400'} flex items-center justify-center text-xs flex-shrink-0">
+            <i class="fa-solid ${isUser ? 'fa-user' : 'fa-bot'}"></i>
+          </div>
+          <div class="${isUser ? 'bg-cyan-600 text-white rounded-tl-none' : 'bg-slate-800/80 text-slate-200 rounded-tr-none'} p-3 rounded-2xl leading-relaxed max-w-[85%]">
+            ${text}
+          </div>
+        </div>
+      `;
+
+      chatBox.insertAdjacentHTML('beforeend', html);
+      chatBox.scrollTop = chatBox.scrollHeight;
+      return msgId;
+    }
+
+    function updateChatMessage(msgId, text) {
+      const msgElem = document.getElementById(msgId);
+      if (msgElem) {
+        msgElem.querySelector('div:nth-child(2)').innerHTML = text;
+      }
+    }
+
+    function clearChat() {
+      document.getElementById('chatBox').innerHTML = '';
+      appendChatMessage("bot", "تم مسح المحادثة. يمكنك طرح أي سؤال جديد الآن!");
+    }
+
+    // -------------------------------------------------------------
+    // 4. GEMINI AI VISION & IMAGE EDITOR
+    // -------------------------------------------------------------
+    function handleVisionImageUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const preview = document.getElementById('visionImagePreview');
+        const placeholder = document.getElementById('visionPlaceholder');
+        
+        preview.src = evt.target.result;
+        preview.classList.remove('hidden');
+        placeholder.classList.add('hidden');
+
+        // Extract raw base64 without prefix
+        selectedVisionBase64 = evt.target.result.split(',')[1];
+      };
+      reader.readAsDataURL(file);
+    }
+
+    async function processGeminiVision() {
+      const promptInput = document.getElementById('visionPrompt').value.trim();
+      const resultBox = document.getElementById('visionResult');
+      const btn = document.getElementById('processVisionBtn');
+
+      if (!selectedVisionBase64) {
+        showToast("يرجى اختيار أو التقاط صورة أولاً!");
+        return;
+      }
+
+      const promptText = promptInput || "حلل هذه الصورة بالتفصيل واشرح عناصرها التقنية والجمالية.";
+
+      btn.disabled = true;
+      btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> جاري المعالجة بـ Gemini Vision...`;
+      resultBox.classList.remove('hidden');
+      resultBox.innerHTML = "جاري الاتصال والتحليل بالذكاء الاصطناعي...";
+
+      try {
+        const payload = {
+          contents: [{
+            role: "user",
+            parts: [
+              { text: promptText },
+              {
+                inlineData: {
+                  mimeType: "image/jpeg",
+                  data: selectedVisionBase64
+                }
+              }
+            ]
+          }]
+        };
+
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await response.json();
+        const textResult = data.candidates?.[0]?.content?.parts?.[0]?.text || "لم نتمكن من الحصول على نتيجة تحليل الصورة.";
+
+        resultBox.innerHTML = `<strong class="text-purple-400">تحليل وتعديل Gemini AI:</strong><br>${textResult}`;
+
+      } catch (err) {
+        resultBox.innerHTML = "حدث خطأ أثناء معالجة الصورة عبر الذكاء الاصطناعي.";
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<i class="fa-solid fa-microchip"></i> معالجة الصورة بوساطة Gemini AI`;
+      }
+    }
+
+    // -------------------------------------------------------------
+    // 5. GALLERY FILTERING LOGIC
+    // -------------------------------------------------------------
+    function filterGallery(category) {
+      const buttons = document.querySelectorAll('.gallery-filter-btn');
+      buttons.forEach(btn => {
+        if (btn.dataset.filter === category) {
+          btn.classList.add('bg-cyan-500', 'text-black', 'font-bold');
+          btn.classList.remove('text-slate-400');
+        } else {
+          btn.classList.remove('bg-cyan-500', 'text-black', 'font-bold');
+          btn.classList.add('text-slate-400');
+        }
+      });
+
+      const items = document.querySelectorAll('.gallery-item');
+      items.forEach(item => {
+        if (category === 'all' || item.classList.contains(category)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // -------------------------------------------------------------
+    // 6. UTILITIES (MODAL & TOAST)
+    // -------------------------------------------------------------
+    function copyText(text, title) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text);
+      } else {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+      }
+      showToast(`تم نسخ ${title} بنجاح!`);
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMessage').innerText = msg;
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 3000);
+    }
+
+    function openAdminModal() {
+      document.getElementById('adminModal').classList.remove('hidden');
+    }
+
+    function closeAdminModal() {
+      document.getElementById('adminModal').classList.add('hidden');
+    }
+
+    function checkAdminAuth() {
+      const input = document.getElementById('adminPassInput').value;
+      if (input === PASSCODE) {
+        document.getElementById('adminAuthSection').classList.add('hidden');
+        document.getElementById('adminDashboard').classList.remove('hidden');
+        fetchAdminStats();
+      } else {
+        showToast("رمز المرور غير صحيح!");
+      }
+    }
+  </script>
+</body>
+</html>
